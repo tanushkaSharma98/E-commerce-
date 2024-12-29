@@ -10,7 +10,7 @@ interface Product {
   image: string;
   description: string;
   quantity: number;
-  showDescription?: boolean; // Added showDescription as optional
+  showDescription?: boolean;
 }
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
       const productsWithQuantity = data.map((product: any) => ({
         ...product,
         quantity: 1,
-        showDescription: false, // Initial value for showDescription
+        showDescription: false,
       }));
       setProducts(productsWithQuantity);
     };
@@ -33,7 +33,7 @@ export default function Home() {
   }, []);
 
   const handleAddToCart = (product: Product) => {
-    addToCart(product);
+    addToCart(product); // This now handles the redirection if the item is already in the cart
     setPopup(true);
     setTimeout(() => setPopup(false), 2000);
   };
@@ -55,9 +55,7 @@ export default function Home() {
             <div className="product-details">
               <h3 className="name">{product.title}</h3>
               <p className="price">${product.price}</p>
-              <p
-                className={`description ${product.showDescription ? 'show' : ''}`}
-              >
+              <p className={`description ${product.showDescription ? 'show' : ''}`}>
                 {product.description}
               </p>
               {product.description.length > 100 && (
