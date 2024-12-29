@@ -10,20 +10,22 @@ interface Product {
   image: string;
   description: string;
   quantity: number;
+  showDescription?: boolean; // Added showDescription as optional
 }
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [popup, setPopup] = useState(false); // State for popup
+  const [popup, setPopup] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch('https://fakestoreapi.com/products');
+      const res = await fetch('/api/products');
       const data = await res.json();
       const productsWithQuantity = data.map((product: any) => ({
         ...product,
-        quantity: 1, // Add default quantity
+        quantity: 1,
+        showDescription: false, // Initial value for showDescription
       }));
       setProducts(productsWithQuantity);
     };
@@ -33,26 +35,39 @@ export default function Home() {
   const handleAddToCart = (product: Product) => {
     addToCart(product);
     setPopup(true);
-    setTimeout(() => setPopup(false), 2000); // Hide popup after 2 seconds
+    setTimeout(() => setPopup(false), 2000);
+  };
+
+  const handleDescriptionToggle = (index: number) => {
+    const updatedProducts = [...products];
+    updatedProducts[index].showDescription = !updatedProducts[index].showDescription;
+    setProducts(updatedProducts);
   };
 
   return (
     <div>
-      {/* Popup Message */}
-      {popup && (
-        <div className="fixed top-4 right-4 bg-green-600 text-white py-2 px-4 rounded shadow-md">
-          Item added to cart!
-        </div>
-      )}
+      {popup && <div className="popup">Item added to cart!</div>}
 
-      <div className="container grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((product) => (
-          <div key={product.id} className="card">
-            <img src={product.image} alt={product.title} className="card-img" />
-            <div className="card-content">
-              <h3 className="card-title">{product.title}</h3>
-              <p className="card-price">${product.price}</p>
-              <p className="card-description">{product.description}</p>
+      <div className="grid-container">
+        {products.map((product, index) => (
+          <div key={product.id} className="grid-item">
+            <img src={product.image} alt={product.title} className="image" />
+            <div className="product-details">
+              <h3 className="name">{product.title}</h3>
+              <p className="price">${product.price}</p>
+              <p
+                className={`description ${product.showDescription ? 'show' : ''}`}
+              >
+                {product.description}
+              </p>
+              {product.description.length > 100 && (
+                <span
+                  className="see-more"
+                  onClick={() => handleDescriptionToggle(index)}
+                >
+                  {product.showDescription ? 'See less' : 'See more'}
+                </span>
+              )}
               <button
                 className="add-to-cart"
                 onClick={() => handleAddToCart(product)}
