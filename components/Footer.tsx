@@ -2,8 +2,15 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="footer">
-    <div className="footer-content">
+    <div className="footer-content"> <section className="image-section">
+        <img 
+          src="https://images.pexels.com/photos/5585837/pexels-photo-5585837.jpeg" 
+          alt="Shopping Banner" 
+          className="homepage-banner"
+        />
+      </section>
       <div className="footer-section">
+        
         <h3>Shope.Inn</h3>
         <div className="b">
          <p >your ultimate destination for all things shopping! We are a premium online shopping platform offering a wide range of high-quality products across various categories, including fashion, electronics, home essentials, and more.</p>
