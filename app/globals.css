@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: 	#D3D3D3;
   --foreground: #333333;
   --primary-color: #1a66b8;
   --secondary-color: #6c757d;
-  --card-background: #f8f9fa49;
+  --card-background: #F1F3F6;
   --card-border: #ddd;
-  --navbar-color: #004085;
+  --navbar-color: white;
 }
 
 /* Homepage Styles */
@@ -24,6 +24,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   justify-items: center;
+  padding-top: 5%;
 }
 
 .grid-item {
@@ -101,12 +102,16 @@ body {
   background-color: var(--navbar-color);
   color: white;
   padding: 10px 20px;
+  position: fixed;
+  width : 100%;
+  height: 10%;
 }
 
 .navbar a {
   color: rgb(253, 235, 68);
   text-decoration: none;
   margin-left: 20%;
+
 }
 
 /* .navbar a:hover {
@@ -231,4 +236,121 @@ body {
   text-align: right;
   margin-top: 20px;
   color: var(--primary-color);
+}
+.footer {
+  background-color: #d5d4d4;
+  color: rgb(15, 12, 12);
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  min-height:300px;
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  }
+   
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 1%;
+  }
+  .footer-section h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .footer-section h4 {
+    font-family: fantasy;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .footer-section p {
+    font-size: 14px;
+    color: #434141;
+    font-size: 18px;
+    font-family: cursive;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10%;
+    font-size: 18px;
+  }
+  
+  .footer-section ul li {
+    margin: 5px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+  }
+  
+  .footer-section ul li a {
+    color: rgb(12, 12, 12);
+    text-decoration: none;
+    font-size: 18px;
+    padding-left: 4px;
+    
+  }
+  .footer-section b p {
+    color: #b1b0b0;
+    font-size: 16px;
+    font-family: cursive;
+
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #181717;
+  }
+  
+  .footer-bottom  {
+    font-size: 8px;
+    margin-top: 5%;
+  }
+  
+  .footer-bottom a:hover {
+    text-decoration: underline;
+  }
+
+  /* Centered search bar */
+.search-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centers the search bar horizontally */
+}
+
+.search-input {
+  width: 300px;  /* Fixed width of search bar */
+  padding: 5px 10px;
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  background: transparent;
+  color: rgb(118, 82, 82);
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: rgba(206, 122, 122, 0.7);
+}
+
+.search-input:focus::placeholder {
+  color: transparent;
+}
+
+.search-input:focus {
+  border-bottom-color: yellow;
+  background: rgba(255, 255, 255, 0.1);
 }
